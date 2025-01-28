@@ -5,11 +5,7 @@ const TABLESPOON = new Tablespoon();
 
 describe('Volume', () => {
     test('one teaspoon equals one teaspoon', () => {
-        expect(
-            new Volume(1, TEASPOON)
-                .equals(new Volume(1, TEASPOON))
-        )
-            .toBe(true)
+        expect(new Volume(1, TEASPOON).equals(new Volume(1, TEASPOON))).toBe(true)
     })
 
     test("1 teaspoon doesn't equal 2 teaspoons", () => {
