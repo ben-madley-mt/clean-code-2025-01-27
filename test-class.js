@@ -10,6 +10,12 @@ export class Tablespoon {
     }
 }
 
+export class Ounce {
+    asTeaspoons() {
+        return 6
+    }
+}
+
 export class Volume {
     constructor(number, unit) {
         this.number = number
