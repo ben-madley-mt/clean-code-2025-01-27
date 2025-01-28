@@ -6,13 +6,37 @@ export class Teaspoon {
 
 export class Tablespoon {
     static asTeaspoons() {
-        return 3
+        return Teaspoon.asTeaspoons() * 3
     }
 }
 
 export class Ounce {
     static asTeaspoons() {
-        return 6
+        return Tablespoon.asTeaspoons() * 2
+    }
+}
+
+export class Cup {
+    static asTeaspoons() {
+        return Ounce.asTeaspoons() * 8
+    }
+}
+
+export class Pint {
+    static asTeaspoons() {
+        return Cup.asTeaspoons() * 2
+    }
+}
+
+export class Quart {
+    static asTeaspoons() {
+        return Pint.asTeaspoons() * 2
+    }
+}
+
+export class Gallon {
+    static asTeaspoons() {
+        return Quart.asTeaspoons() * 4
     }
 }
 

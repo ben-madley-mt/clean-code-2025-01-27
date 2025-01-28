@@ -1,4 +1,4 @@
-import {Ounce, Tablespoon, Teaspoon, Volume} from "./test-class";
+import {Cup, Gallon, Ounce, Pint, Quart, Tablespoon, Teaspoon, Volume} from "./test-class";
 
 describe('Volume', () => {
     test('one teaspoon equals one teaspoon', () => {
@@ -21,21 +21,21 @@ describe('Volume', () => {
         expect(new Volume(2, Tablespoon).equals(new Volume(1, Ounce))).toBe(true)
     })
 
-    // test("8 ounce equals 1 cup", () => {
-    //     expect(new Volume(8, OUNCE).equals(new Volume(1, CUP))).toBe(true)
-    // })
+    test("8 ounce equals 1 cup", () => {
+        expect(new Volume(8, Ounce).equals(new Volume(1, Cup))).toBe(true)
+    })
 
-    // test("2 cups equals 1 pint", () => {
-    //     expect(new Volume(2, CUPS).equals(new Volume(1, PINT))).toBe(true)
-    // })
+    test("2 cups equals 1 pint", () => {
+        expect(new Volume(2, Cup).equals(new Volume(1, Pint))).toBe(true)
+    })
 
-    // test("2 pints equals 1 quart", () => {
-    //     expect(new Volume(2, PINT).equals(new Volume(1, QUART))).toBe(true)
-    // })
+    test("2 pints equals 1 quart", () => {
+        expect(new Volume(2, Pint).equals(new Volume(1, Quart))).toBe(true)
+    })
 
-    // test("4 quarts equals 1 gallon", () => {
-    //     expect(new Volume(4, QUART).equals(new Volume(1, GALLON))).toBe(true)
-    // })
+    test("4 quarts equals 1 gallon", () => {
+        expect(new Volume(4, Quart).equals(new Volume(1, Gallon))).toBe(true)
+    })
 })
 
 // 7 classes unit e.g. tablespoons  
