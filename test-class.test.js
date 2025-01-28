@@ -55,6 +55,16 @@ describe('Volume', () => {
         expect(new Volume(1, Tablespoon).add(new Volume(1, Tablespoon)))
             .toEqual(new Volume(2, Tablespoon))
     })
+
+    test("1 teaspoon + 1 tablespoon = 4 teaspoon", () => {
+        expect(new Volume(1, Teaspoon).add(new Volume(1, Tablespoon)))
+            .toEqual(new Volume(4, Teaspoon))
+    })
+
+    // test("2 quarts + 4 tablespoon = 66 ounces", () => {
+    //     expect(new Volume(2, Quart).add(new Volume(4, Tablespoon)))
+    //         .toEqual(new Volume(81, Ounce))
+    // })
 })
 
 // 7 classes unit e.g. tablespoons  

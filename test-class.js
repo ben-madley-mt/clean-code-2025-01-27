@@ -54,9 +54,16 @@ export class Volume {
     }
 
     add(other) {
+        if (this.unit === other.unit) {
+            return new Volume(
+                this.number + other.number,
+                this.unit
+            )
+        }
+
         return new Volume(
-            this.number + other.number,
-            this.unit
+            this.unit.asTeaspoons() * this.number + other.unit.asTeaspoons() * other.number,
+            Teaspoon
         )
     }
 }
