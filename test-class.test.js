@@ -36,6 +36,10 @@ describe('Volume', () => {
     test("4 quarts equals 1 gallon", () => {
         expect(new Volume(4, Quart).equals(new Volume(1, Gallon))).toBe(true)
     })
+
+    test("1 quart equals 1 teaspoons", () => {
+        expect(new Volume(1, Quart).equals(new Volume(192, Teaspoon))).toBe(true)
+    })
 })
 
 // 7 classes unit e.g. tablespoons  
