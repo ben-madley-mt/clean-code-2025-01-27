@@ -40,6 +40,21 @@ describe('Volume', () => {
     test("1 quart equals 1 teaspoons", () => {
         expect(new Volume(1, Quart).equals(new Volume(192, Teaspoon))).toBe(true)
     })
+
+    test("1 teaspoon + 0 teaspoons = 1 teaspoon", () => {
+        expect(new Volume(1, Teaspoon).add(new Volume(0, Teaspoon)))
+            .toEqual(new Volume(1, Teaspoon))
+    })
+
+    test("1 teaspoon + 1 teaspoons = 2 teaspoon", () => {
+        expect(new Volume(1, Teaspoon).add(new Volume(1, Teaspoon)))
+            .toEqual(new Volume(2, Teaspoon))
+    })
+
+    test("1 tablespoon + 1 tablespoon = 2 tablespoon", () => {
+        expect(new Volume(1, Tablespoon).add(new Volume(1, Tablespoon)))
+            .toEqual(new Volume(2, Tablespoon))
+    })
 })
 
 // 7 classes unit e.g. tablespoons  

@@ -52,4 +52,11 @@ export class Volume {
 
         return thisTeaspoons === otherTeaspoons
     }
+
+    add(other) {
+        return new Volume(
+            this.number + other.number,
+            this.unit
+        )
+    }
 }
