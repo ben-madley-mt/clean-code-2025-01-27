@@ -1,17 +1,17 @@
 export class Teaspoon {
-    asTeaspoons() {
+    static asTeaspoons() {
         return 1
     }
 }
 
 export class Tablespoon {
-    asTeaspoons() {
+    static asTeaspoons() {
         return 3
     }
 }
 
 export class Ounce {
-    asTeaspoons() {
+    static asTeaspoons() {
         return 6
     }
 }

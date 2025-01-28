@@ -1,28 +1,24 @@
-import { Volume, Teaspoon, Tablespoon, Ounce } from "./test-class";
-
-const TEASPOON = new Teaspoon();
-const TABLESPOON = new Tablespoon();
-const OUNCE = new Ounce();
+import {Ounce, Tablespoon, Teaspoon, Volume} from "./test-class";
 
 describe('Volume', () => {
     test('one teaspoon equals one teaspoon', () => {
-        expect(new Volume(1, TEASPOON).equals(new Volume(1, TEASPOON))).toBe(true)
+        expect(new Volume(1, Teaspoon).equals(new Volume(1, Teaspoon))).toBe(true)
     })
 
     test("1 teaspoon doesn't equal 2 teaspoons", () => {
-        expect(new Volume(1, TEASPOON).equals(new Volume(2, TEASPOON))).toBe(false)
+        expect(new Volume(1, Teaspoon).equals(new Volume(2, Teaspoon))).toBe(false)
     })
 
     test("1 teaspoon doesn't equal 1 tablespoon", () => {
-        expect(new Volume(1, TEASPOON).equals(new Volume(1, TABLESPOON))).toBe(false)
+        expect(new Volume(1, Teaspoon).equals(new Volume(1, Tablespoon))).toBe(false)
     })
 
     test("3 teaspoon equals 1 tablespoon", () => {
-        expect(new Volume(3, TEASPOON).equals(new Volume(1, TABLESPOON))).toBe(true)
+        expect(new Volume(3, Teaspoon).equals(new Volume(1, Tablespoon))).toBe(true)
     })
 
     test("2 tablespoon equals 1 ounce", () => {
-        expect(new Volume(2, TABLESPOON).equals(new Volume(1, OUNCE))).toBe(true)
+        expect(new Volume(2, Tablespoon).equals(new Volume(1, Ounce))).toBe(true)
     })
 
     // test("8 ounce equals 1 cup", () => {
