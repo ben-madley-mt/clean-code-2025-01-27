@@ -1,69 +1,51 @@
-export class Teaspoon {
-    static asTeaspoons() {
-        return 1
-    }
-}
-
-export class Tablespoon {
-    static asTeaspoons() {
-        return Teaspoon.asTeaspoons() * 3
-    }
-}
-
-export class Ounce {
-    static asTeaspoons() {
-        return Tablespoon.asTeaspoons() * 2
-    }
-}
-
-export class Cup {
-    static asTeaspoons() {
-        return Ounce.asTeaspoons() * 8
-    }
-}
-
-export class Pint {
-    static asTeaspoons() {
-        return Cup.asTeaspoons() * 2
-    }
-}
-
-export class Quart {
-    static asTeaspoons() {
-        return Pint.asTeaspoons() * 2
-    }
-}
-
-export class Gallon {
-    static asTeaspoons() {
-        return Quart.asTeaspoons() * 4
-    }
-}
-
-export class Volume {
-    constructor(number, unit) {
-        this.number = number
-        this.unit = unit
+export class Measure {
+    constructor(value, type) {
+        this.value = value
+        this.type = type
     }
 
     equals(other) {
-        const thisTeaspoons = this.unit.asTeaspoons() * this.number
-        const otherTeaspoons = other.unit.asTeaspoons() * other.number
+        return this.toBaseUnit().value === other.toBaseUnit().value
+        && this.type.baseUnit === other.type.baseUnit
 
-        return thisTeaspoons === otherTeaspoons
     }
 
     add(other) {
-        if (this.unit === other.unit) {
-            return new Volume(
-                this.number + other.number,
-                this.unit
-            )
+        if(this.type.baseUnit !== other.type.baseUnit)
+        {
+            throw new Error("trying to add different types of units")
         }
-
-        return new Volume(
-            this.unit.asTeaspoons() * this.number + other.unit.asTeaspoons() * other.number,
-            Teaspoon
-        )
+        let baselineAdding = this.toBaseUnit().value + other.toBaseUnit().value
+        return new Measure(baselineAdding, new this.type.baseUnit(1))
     }
+
+    toBaseUnit() {
+        return new Measure(this.value * this.type.multiplier, new this.type.baseUnit(1))
+    }
+}
+
+export class VolumeUnit {
+    constructor(multiplier) {
+        this.multiplier = multiplier
+    }
+    baseUnit = VolumeUnit
+}
+
+export class LengthUnit {
+    constructor(multiplier) {
+        this.multiplier = multiplier
+    }
+    baseUnit = LengthUnit
+}
+
+export class Units {
+    static VOLUME = {
+        TEASPOON: new VolumeUnit(1),
+        TABLESPOON: new VolumeUnit(3)
+    }
+    static LENGTH = {
+        INCH: new LengthUnit(1),
+        FOOT: new LengthUnit(12)
+    }
+
 }
