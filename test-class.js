@@ -1,41 +1,55 @@
-export class Measure {
-    constructor(value, type) {
+export class Measurement {
+    constructor(value, unit) {
         this.value = value
-        this.type = type
+        this.unit = unit
     }
 
     equals(other) {
-        return this.toBaseUnit().value === other.toBaseUnit().value
-        && this.type.baseUnit === other.type.baseUnit
-
+        return this.unit.compatibleWith(other.unit)
+            && this.toBaseUnit().value === other.toBaseUnit().value
     }
 
     add(other) {
-        if(this.type.baseUnit !== other.type.baseUnit)
-        {
-            throw new Error("trying to add different types of units")
+        if (!this.unit.compatibleWith(other.unit)) {
+            throw new Error("trying to add different units of units")
         }
         let baselineAdding = this.toBaseUnit().value + other.toBaseUnit().value
-        return new Measure(baselineAdding, new this.type.baseUnit(1))
+        return new Measurement(baselineAdding, new (this.unit.getBaseUnit())(1))
     }
 
     toBaseUnit() {
-        return new Measure(this.value * this.type.multiplier, new this.type.baseUnit(1))
+        return this.unit.toBaseUnit(this.value)
     }
 }
 
-export class VolumeUnit {
+class AbstractUnit {
     constructor(multiplier) {
         this.multiplier = multiplier
     }
-    baseUnit = VolumeUnit
+
+    toBaseUnit(amount) {
+        return new Measurement(amount * this.multiplier, new (this.getBaseUnit())(1))
+    }
+
+    compatibleWith(otherUnit) {
+        return this.getBaseUnit() === otherUnit.getBaseUnit()
+    }
+
+    getBaseUnit() {
+        throw Error("Not implemented")
+    }
 }
 
-export class LengthUnit {
-    constructor(multiplier) {
-        this.multiplier = multiplier
+export class VolumeUnit extends AbstractUnit {
+    getBaseUnit() {
+        return VolumeUnit
     }
-    baseUnit = LengthUnit
+}
+
+export class LengthUnit extends AbstractUnit {
+    getBaseUnit() {
+        return LengthUnit
+    }
 }
 
 export class Units {
